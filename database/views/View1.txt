@@ -1,0 +1,7 @@
+CREATE VIEW Projects_And_Researchers AS
+SELECT E.First_name, E.Last_name, P.Title FROM Researcher as E 
+LEFT JOIN Works_on as W
+ON E.researcher_id = W.researcher_id
+LEFT JOIN   project as P
+ON P.project_id = W.project_id
+ORDER BY(E.researcher_id)

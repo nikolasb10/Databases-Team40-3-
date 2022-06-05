@@ -1,0 +1,6 @@
+CREATE VIEW Researchers_And_Review AS
+SELECT E.first_name, E.last_name, R.review_id, R.writing_date, R.grade
+FROM Researcher as E 
+LEFT JOIN review as R
+ON E.researcher_id = R.researcher_id
+ORDER BY(E.researcher_id);
