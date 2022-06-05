@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Answer 3.8</title>
+</head>
+<body>
+    <div class="table-data">
+<h2>Answer 3.8</h2>
+    <br>
+    <table border="1">
+        <tr>
+            <th>First_Name</th>
+            <th>Last_Name</th>
+            <th>Number of projects</th>
+        </tr>
+
+        <%
+        if(resData.length!=0){
+        resData.forEach(function(data){
+        %>
+        <tr>
+            <td><%=data.first_Name %></td>
+            <td><%=data.last_name %></td>
+            <td><%=data.num_projects %></td>
+        </tr>
+        <%  }) %>
+        <% } else{ %>
+            <tr>
+                <td colspan="7">No Data Found</td>
+            </tr>
+        <% } %>
+    </table>
+    </div>
+</body>
+</html>

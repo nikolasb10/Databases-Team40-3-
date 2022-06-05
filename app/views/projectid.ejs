@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>View Researchers</title>
+</head>
+<body>
+    <div class="table-data">
+<h2>View Researchers for specific project</h2>
+    <br>
+    <table border="1">
+        <tr>
+            <th>researcher_id</th>
+            <th>Organization_Name</th>
+            <th>First_Name</th>
+            <th>Last_Name</th>
+            <th>Gender</th>
+            <th>Date_of_Birth</th>
+            <th>Starting_Date</th>
+        </tr>
+
+        <%
+        if(resData.length!=0){
+        resData.forEach(function(data){
+        %>
+        <tr>
+            <td><%=data.researcher_id %></td>
+            <td><%=data.Organization_Name %></td>
+            <td><%=data.first_name %></td>
+            <td><%=data.last_name %></td>
+            <td><%=data.Gender %></td>
+            <td><%=data.Date_of_Birth %></td>
+            <td><%=data.Starting_Date %></td>
+        </tr>
+        <%  }) %>
+        <% } else{ %>
+            <tr>
+                <td colspan="7">No Data Found</td>
+            </tr>
+        <% } %>
+    </table>
+    </div>
+</body>
+</html>

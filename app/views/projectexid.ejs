@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Programs</title>
+</head>
+<body>
+
+    <div class="table-data">
+<h2>Projects they are funding</h2>
+    <br>
+    <table border="1">
+        <tr>
+            <th>Project Id</th>
+            <th>Researcher Id (scientific director)</th>
+            <th>Organization Name</th>
+            <th>Executive Id</th>
+            <th>Program Name</th>
+            <th>Title</th>
+            <th>Summary</th>
+            <th>Funding Amount</th>
+            <th>Starting Date</th>
+            <th>Ending Date</th>
+            <th>Duration</th>
+        </tr>
+        <%
+        if(resData.length!=0){
+        resData.forEach(function(data){
+        %>
+        <tr>
+            <td><%=data.Project_id %></td>
+            <td><%=data.Researcher_id %></td>
+            <td><%=data.Organization_Name %></td>
+            <td><%=data.Executive_id %></td>
+            <td><%=data.Program_Name %></td>
+            <td><%=data.Title %></td>
+            <td><%=data.Summary %></td>
+            <td><%=data.Funding_amount %></td>
+            <td><%=data.Starting_Date %></td>
+            <td><%=data.Ending_Date %></td>
+            <td><%=data.Duration %></td>
+        </tr>
+        <%  }) %>
+        <% } else{ %>
+            <tr>
+                <td colspan="7">No Data Found</td>
+            </tr>
+        <% } %>
+    </table>
+    </div>
+</body>
+</html>

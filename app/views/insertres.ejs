@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Insert Researcher</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container mt-4">
+      <div class="card">
+        <div class="card-body">
+
+          <h2>Insert the Data for the Researcher</h2>
+
+          <form action="insertres" method="POST">
+            <div class="form-group">
+              <label for="Researcher_id">Researcher_id</label>
+              <input type="number" class="form-control col-lg-9" id="researcher_id" aria-describedby="emailHelp" placeholder="Enter Researcher id" name="researcher_id" min "10001" max "19999">
+            </div>
+            <div class="form-group">
+              <label for="Organization_Name">Organization_Name</label>
+              <input type="text" class="form-control col-lg-9" id="Organization_Name" aria-describedby="emailHelp" placeholder="Enter Organization Name" name="Organization_Name">
+            </div>
+            <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input type="text" class="form-control col-lg-9" id="f_name" aria-describedby="emailHelp" placeholder="Enter First name" name="f_name">
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name</label>
+              <input type="text" class="form-control col-lg-9" id="l_name" aria-describedby="emailHelp" placeholder="Enter Last name" name="l_name">
+            </div>
+            <div class="form-group">
+              <label for="Gender">Gender</label>
+              <input type="text" class="form-control col-lg-9" id="gender" aria-describedby="emailHelp" name="gender" placeholder="Enter gender">
+            </div>
+            <div class="form-group">
+              <label for="Date_of_Birth">Date_of_Birth</label>
+              <input type="text" class="form-control col-lg-9" id="date_of_Birth" aria-describedby="emailHelp" name="date_of_birth" placeholder="Enter date of birth">
+            </div>
+            <div class="form-group">
+              <label for="Starting_Date">Starting_Date</label>
+              <input type="text" class="form-control col-lg-9" id="Starting_Date" aria-describedby="emailHelp" name="starting_date" placeholder="Enter starting date">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+    </div>
+  </div>
+  </body>
+</html>

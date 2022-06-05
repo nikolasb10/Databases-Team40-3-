@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset = "utf-8">
+    <meta name = "viewport" content = "width=device-width, initial-scale=1">
+    <title>Question 3.3</title>
+    <link rel = "stylesheet" href = "/style.css">
+
+  </head>
+  <body>
+    <hr>
+    <div class="banner">
+      <div class="navbar">
+        <ul>
+          <h1>Databases Project</h1>
+          <h2>Team 40</h2>
+      </div>
+      <div class="content">
+        <ul>
+          <br><br><br><br><br>
+          <h4>Choose scientific field</h4>
+          <br><br>
+          <input type="text" id="data-id" >
+          <button type="button" onclick="goto()" ><span></span>Submit </button>
+          <br>
+          <h5>(Archaeology, Area studies, Art and architecture, Astronomy, astrophysics Biology, Business administration, Chemistry, Communication science,
+            Computer science, Computers and the humanities, Cultural anthropology, Demography, Development studies, Earth sciences, Economics, Educational Sciences,
+            Environmental science, Gender studies.
+Geography / planning,
+History,
+History of science,
+Language and literature,
+Law,
+Life sciences,
+Life sciences and medicine,
+Linguistics,
+Mathematics,
+Medicine,
+Music, theatre, performing arts and media,
+Pedagogics,
+Philosophy,
+Physics,
+Psychology,
+Public administration and political science,
+Religious studies and theology,
+Science and technology,
+Sociology,
+Technology,
+Veterinary medicine)</h5>
+          <script>
+            function goto() {
+              let id = document.getElementById("data-id").value;
+              window.location.href='http://localhost:3000/common/33'+'/'+String(id);
+            }
+          </script>
+      </div>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Edit Researchers</title>
+</head>
+<body>
+    <div class="table-data">
+<h2>Edit Researchers</h2>
+    <div>
+    <td><a href="/edit/insertres">Insert</a></td>
+    </div>
+    <br>
+    <table border="1">
+        <tr>
+            <th>researcher_id</th>
+            <th>Organization_Name</th>
+            <th>First_Name</th>
+            <th>Last_Name</th>
+            <th>Gender</th>
+            <th>Date_of_Birth</th>
+            <th>Starting_Date</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+
+        <%
+        if(resData.length!=0){
+        resData.forEach(function(data){
+        %>
+        <tr>
+            <td><%=data.researcher_id %></td>
+            <td><%=data.Organization_Name %></td>
+            <td><%=data.first_name %></td>
+            <td><%=data.last_name %></td>
+            <td><%=data.Gender %></td>
+            <td><%=data.Date_of_Birth %></td>
+            <td><%=data.Starting_Date %></td>
+            <td><a href="/view/researchers/<%=data.researcher_id%>">Update</a></td>
+            <td><a href="/edit/delete/<%=data.researcher_id%>">Delete</a></td>
+        </tr>
+        <%  }) %>
+        <% } else{ %>
+            <tr>
+                <td colspan="7">No Data Found</td>
+            </tr>
+        <% } %>
+    </table>
+    </div>
+</body>
+</html>

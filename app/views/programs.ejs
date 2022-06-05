@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Programs</title>
+</head>
+<body>
+
+    <div class="table-data">
+<h2>Programs</h2>
+    <h3>Choose for specific administration:</h3>
+    <input type="text" id="data-id" >
+    <button type="button" onclick="goto()" >Submit </button>
+    <script>
+      function goto() {
+        let id = document.getElementById("data-id").value;
+        window.location.href='http://localhost:3000/view/programs'+'/'+String(id);
+      }
+    </script>
+    <br> <br>
+    <table border="1">
+        <tr>
+            <th>Program Name</th>
+            <th>Administration</th>
+        </tr>
+        <%
+        if(resData.length!=0){
+        resData.forEach(function(data){
+        %>
+        <tr>
+            <td><%=data.Program_name %></td>
+            <td><%=data.Administration %></td>
+        </tr>
+        <%  }) %>
+        <% } else{ %>
+            <tr>
+                <td colspan="7">No Data Found</td>
+            </tr>
+        <% } %>
+    </table>
+    </div>
+</body>
+</html>
