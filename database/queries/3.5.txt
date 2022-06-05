@@ -1,0 +1,8 @@
+SELECT distinct S.Field_name , P.Field_Name, count(S.project_id) as Num
+FROM Sc_field_of_project as S
+LEFT JOIN Sc_field_of_project as P
+ON S.project_id = P.project_id
+WHERE S.Field_name != P.field_Name
+group by(S.Field_name)
+ORDER BY ( Num) desc
+LIMIT 3

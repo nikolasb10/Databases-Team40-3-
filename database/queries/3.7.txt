@@ -1,0 +1,9 @@
+SELECT E.First_Name, E.Last_Name, sum(O.organisation_budget) AS Total_Funding
+FROM executives AS E
+LEFT JOIN project AS P
+ON E.executive_id = P.Executive_id
+LEFT JOIN organization as O
+ON O.organization_name = P.organization_name
+WHERE O.Kind = '1' 
+GROUP BY(E.executive_id)
+ORDER BY(Total_Funding) desc;

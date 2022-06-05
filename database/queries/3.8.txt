@@ -1,0 +1,8 @@
+SELECT R.First_Name,R.Last_name, count(project_id) as num_projects
+FROM researcher as R
+LEFT JOIN works_on W
+ON R.Researcher_id = W.Researcher_id
+WHERE (R.Researcher_id,project_id) in (SELECT researcher_id,project_id
+						  FROM works_on
+						  WHERE Project_id NOT IN (SELECT project_id FROM deliverable))
+GROUP BY(R.researcher_id);

@@ -1,0 +1,9 @@
+SELECT W.project_id, R.first_name, R.last_name 
+FROM works_on as W
+LEFT JOIN researcher as R
+ON W.researcher_id = R.researcher_id
+WHERE project_id in (SELECT project_id
+		     FROM project
+      		     WHERE ending_date is null and project_id in (SELECT project_id 
+										      FROM sc_Field_of_Project
+										      WHERE field_name = 'Archaeology'));

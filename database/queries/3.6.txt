@@ -1,0 +1,9 @@
+SELECT R.first_name,R.last_name, count(P.project_id) as projects
+FROM researcher AS R
+LEFT JOIN works_on AS W
+ON R.researcher_id = W.researcher_id
+RIGHT JOIN project AS P
+ON W.project_id = P.project_id
+WHERE P.Ending_Date IS NULL AND R.age < 2040
+GROUP BY(R.researcher_id)
+ORDER BY(projects) desc
