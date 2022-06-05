@@ -1,0 +1,102 @@
+/*UPDATE TRIGGERS*/ 
+ delimiter //   
+	create trigger res_chek_upd BEFORE UPDATE ON researcher 
+	 for each row
+	 BEGIN 
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT ='Updates not allowed';
+	  END;//
+	delimiter ;
+
+	/*Sc_f_of_pr field or Project doesnt exist*/  
+	delimiter //
+	create trigger Sc_f_of_pr_check_upd BEFORE UPDATE on sc_field_of_project
+	 for each row
+	 BEGIN 
+	 SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT ='Updates not allowed';
+	  END;//
+	  
+	delimiter ;
+	/*Scientific_field*/ 
+	delimiter //
+	create trigger Sc_field_check_upd BEFORE UPDATE on scientific_field
+	 for each row
+	 BEGIN 
+	  IF (NEW.Field_name  IN(
+	   SELECT field_name FROM scientific_field))
+	   THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT ='Scientific Field already Exists';
+	   END IF;
+	   END;//
+	   delimiter ;
+	   /*Works_on check*/ 
+	delimiter //
+	create trigger Works_on_check_upd BEFORE UPDATE on works_on 
+	 for each row
+	  SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT ='Updates not allowed';
+	  END IF;
+	END;//
+    delimiter ; 
+	/*Review*/  
+	delimiter //
+	create trigger review_check_upd BEFORE UPDATE on review
+	 for each row
+	 SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT ='Updates not allowed';
+	END;//
+ delimiter ;
+	/**executive triggers**/ 
+	delimiter //
+	create trigger exec_check_upd BEFORE UPDATE on executives
+	 for each row
+	 BEGIN 
+	  IF (NEW.executive_id  IN(
+	   SELECT E.executive_id FROM executive  E
+       WHERE NEW.executive_id = E.executive_id))
+	   THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT ='Executive already exists';
+	   END IF;
+	   END;//
+	   delimiter ;
+	  /**Deliverable triggers**/ 
+	  delimiter //
+	create trigger deliverable_check_upd after UPDATE on deliverable
+	 for each row
+	 BEGIN 
+	 SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT ='Updates not allowed';
+	  END;//
+      delimiter ;
+
+	/*Program triggers*/ 
+	delimiter //
+	create trigger prog_check_upd  BEFORE UPDATE on program
+	 for each row
+	 BEGIN 
+	  IF (NEW.Program_Name  IN(
+	   SELECT P.Program_Name FROM program P
+        WHERE NEW.Program_Name=P.Program_Name))
+	   THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT ='Program already exists';
+	   END IF;
+	 END;
+     //
+     delimiter ; 
+	   /**ORGANISATION TRIGGERS**/ 
+	delimiter //
+	create trigger org_check_upd BEFORE UPDATE on organization
+	 for each row
+	 BEGIN 
+	  IF (NEW.Organization_Name  IN(
+	   SELECT Organization_Name FROM organization))
+	   THEN  SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT ='Organization already exists';
+	  ELSEIF(NEW.Organisation_budget < 500000)
+	   THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT ='Budget lower than 500000';
+	  ELSEIF( New.Kind <= 0 OR New.Kind > 3 )
+	   THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT ='Organization is not a Company,University or Research Cenrtre';
+	   END IF;
+	 END;//
+	delimiter ;
+	/**PROJECT TRIGGERS**/ 
+	delimiter //
+	create trigger proj_check_upd BEFORE UPDATE on project
+	 for each row
+	 BEGIN 
+	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT ='Updates not allowed';
+	  END;//
+	delimiter ;
+    

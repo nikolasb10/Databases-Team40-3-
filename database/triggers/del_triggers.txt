@@ -1,0 +1,134 @@
+        /* DELETE TRIGGERS */
+	/*project delete*/ 
+    delimiter //
+	create trigger proj_delete BEFORE delete on project
+	 for each row
+	 BEGIN 
+	  IF(OLD.project_id IN (
+	   SELECT project_id FROM project
+		WHERE Ending_Date IS NULL))
+         THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT ='Cannot Delete';
+	  END IF;
+      END;//
+      delimiter ;
+      /*researcher delete*/ 
+      delimiter //
+   create trigger res_delete BEFORE delete on researcher
+   for each row
+   BEGIN 
+	  IF(OLD.researcher_id IN (
+	   SELECT researcher_id FROM project
+		WHERE Ending_Date IS NULL))
+        THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT ='Cannot Delete';
+	  ELSEIF(OLD.researcher_id IN (
+       SELECT researcher_id FROM review
+       WHERE project_id IN (
+       SELECT project_id FROM project
+       WHERE Ending_Date IS NULL)))
+	    THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT ='Cannot Delete';
+	  END IF;
+      END;//
+      delimiter ;
+        
+        /*exec del*/ 
+        delimiter //
+   create trigger exec_delete BEFORE delete on executives
+   for each row
+   BEGIN 
+	  IF(OLD.executive_id IN (
+	   SELECT executive_id FROM project
+		WHERE Ending_Date IS NULL))
+        THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT ='Cannot Delete';
+	 
+	  END IF;
+      END;//
+      delimiter ;
+             
+             /*review del*/
+        delimiter // 
+   create trigger review_delete BEFORE delete on review
+   for each row
+   BEGIN 
+	  IF(OLD.project_id IN (
+	   SELECT project_id FROM project
+		WHERE Ending_Date IS NULL))
+       THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT ='Cannot Delete';
+	  END IF;
+      END;//
+      delimiter ;
+      
+	/*deliverable  del*/ 
+        delimiter //
+   create trigger deliverable_delete BEFORE delete on deliverable
+   for each row
+   BEGIN 
+	  IF(OLD.project_id IN (
+	   SELECT project_id FROM project
+		WHERE Ending_Date IS NULL))
+        THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT ='Cannot Delete';
+	  END IF;
+      END;//
+      delimiter ;
+      
+      /*program  del*/ 
+        delimiter //
+   create trigger program_delete BEFORE delete on program
+   for each row
+   BEGIN 
+	  IF(OLD.Program_name IN (
+	   SELECT Program_name FROM project
+		WHERE Ending_Date IS NULL))
+        THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT ='Cannot Delete';
+	  END IF;
+      END;//
+      delimiter ;
+      
+      
+  /*Organization  del*/ 
+        delimiter //
+   create trigger Org_delete BEFORE delete on organization
+   for each row
+   BEGIN 
+	  IF(OLD.organization_name IN (
+	   SELECT organization_name FROM project
+		WHERE Ending_Date IS NULL))
+        THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT ='Cannot Delete';
+      ELSEIF(OLD.organization_name IN (
+	   SELECT organization_name  FROM researcher
+       WHERE researcher_id IN (
+       SELECT researcher_id FROM works_on
+       WHERE project_id IN (
+       SELECT project_id FROM project
+       WHERE Ending_date IS NULL))))
+       THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT ='Cannot Delete';
+	  END IF;
+      END;//
+      delimiter ;    
+      
+      /*Sc_Field  del*/
+        delimiter //
+   create trigger Sc_field_delete BEFORE delete on Scientific_field
+   for each row
+   BEGIN 
+	  IF(OLD.field_name IN (
+	   SELECT field_name FROM sc_field_of_project 
+       WHERE field_name IN (
+       SELECT field_name FROM project
+		WHERE Ending_Date IS NULL)))
+        THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT ='Cannot Delete';
+	  END IF;
+      END;//
+      delimiter ; 
+
+ /*Sc_Field_of_project  del*/ 
+        delimiter //
+   create trigger Sc_field_of_proj_delete BEFORE delete on Sc_field_of_project
+   for each row
+   BEGIN 
+	  IF(OLD.project_id IN (
+	   SELECT project_id FROM project 
+		WHERE Ending_Date IS NULL))
+        THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT ='Cannot Delete';
+	  END IF;
+      END;//
+      delimiter ; 
